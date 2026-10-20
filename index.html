@@ -44,6 +44,8 @@
 
     <section id="subjects" class="page">
       <div class="page-intro"><p class="eyebrow">TON PROGRAMME</p><h1>Toutes les matières</h1><p>Choisis une matière pour commencer.</p></div>
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="subjectSearch" type="search" placeholder="Rechercher une matière ou une notion…" autocomplete="off"><button id="clearSearch" type="button" aria-label="Effacer la recherche">×</button></label>
+      <p id="searchSummary" class="search-summary" aria-live="polite"></p>
       <div id="allSubjects" class="subject-list"></div>
     </section>
 
@@ -69,7 +71,21 @@
       <div class="page-intro"><p class="eyebrow">TU AVANCES !</p><h1>Ma progression</h1><p>Chaque session compte. Continue comme ça.</p></div>
       <div class="overall-card"><div><span class="muted">Progression globale</span><h2 id="progressBig">0%</h2><p id="progressCaption">Commence une première activité pour suivre tes progrès.</p></div><div class="ring" id="progressRing"><span id="ringValue">0%</span></div></div>
       <div class="section-heading"><div><p class="eyebrow">PAR MATIÈRE</p><h2>Où en es-tu ?</h2></div></div>
+      <article class="content-card review-focus"><div><p class="eyebrow">POUR PROGRESSER</p><h2>Revoir mes erreurs</h2><p>Retrouve les questions ratées dans les QCM et réessaie sans revoir les réponses.</p></div><div id="mistakeSummary" class="mistake-summary"></div><div id="mistakeActions" class="mistake-actions"></div></article>
       <div id="progressSubjects" class="progress-subjects"></div>
+      <div class="section-heading"><div><p class="eyebrow">TON ORGANISATION</p><h2>Mon planning personnalisé</h2></div></div>
+      <article class="content-card planner-card">
+        <p>Indique ta date d’examen et ton temps disponible. Cap Brevet préparera un programme sur les 7 prochains jours, en donnant la priorité aux matières à renforcer.</p>
+        <form id="plannerForm" class="planner-form">
+          <label for="examDate">Date du brevet</label>
+          <input id="examDate" name="examDate" type="date" required>
+          <label for="dailyMinutes">Temps disponible par jour</label>
+          <select id="dailyMinutes" name="dailyMinutes"><option value="15">15 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">1 heure</option></select>
+          <fieldset class="weak-subjects"><legend>Matières à renforcer (facultatif)</legend><div id="weakSubjectChoices" class="weak-choice-grid"></div></fieldset>
+          <button class="primary-btn" type="submit">Créer / actualiser mon planning →</button>
+        </form>
+        <div id="plannerOutput" class="planner-output" aria-live="polite"><p class="muted">Renseigne la date de l’examen pour préparer ton planning.</p></div>
+      </article>
       <div class="backup-actions"><button id="exportBtn" class="secondary-btn">Exporter ma sauvegarde</button><button id="importBtn" class="secondary-btn">Importer une sauvegarde</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
       <button id="resetBtn" class="danger-btn">Réinitialiser ma progression</button>
       <p class="tiny muted">Tes résultats restent dans le stockage local de ce navigateur. Ils ne sont pas envoyés à un serveur. Exporte régulièrement une sauvegarde pour éviter de perdre tes progrès si tu effaces les données du navigateur ou changes de téléphone.</p>
