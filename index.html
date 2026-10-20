@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3157d5">
+  <meta name="description" content="Révise le brevet avec des fiches, des QCM, des flashcards et un suivi de progression.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Cap Brevet — Révise malin</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Cap Brevet, accueil"><span class="brand-mark">✦</span><span>cap<span class="brand-light">brevet</span></span></a>
+    <button id="installBtn" class="install-btn hidden" type="button">Installer l’app</button>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">TON ESPACE DE RÉVISION</p>
+          <h1>Prêt·e à décrocher<br>ton brevet ?</h1>
+          <p>Un peu chaque jour, et tu progresses.</p>
+          <button class="primary-btn" data-go="subjects">Commencer à réviser <span>→</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="book book-back"></div><div class="book book-front"><span>BREVET</span><b>✦</b></div><div class="spark s1">✦</div><div class="spark s2">✧</div></div>
+      </div>
+
+      <div class="section-heading"><div><p class="eyebrow">TON BILAN</p><h2>Ta progression</h2></div><span class="muted small">Enregistrée sur cet appareil</span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-icon purple">◉</span><strong id="statProgress">0%</strong><span>Progression globale</span><div class="progress-track"><div id="progressBar" class="progress-fill"></div></div></article>
+        <article class="stat-card"><span class="stat-icon orange">✓</span><strong id="statQuizzes">0</strong><span>QCM terminés</span></article>
+        <article class="stat-card"><span class="stat-icon green">▤</span><strong id="statCards">0</strong><span>Cartes révisées</span></article>
+      </div>
+
+      <div class="section-heading"><div><p class="eyebrow">POUR AUJOURD’HUI</p><h2>Ta prochaine étape</h2></div></div>
+      <button class="next-card" data-go="subjects"><span class="next-icon">✎</span><span class="next-text"><b>Choisis une matière</b><small>Fiches, quiz et flashcards au même endroit</small></span><span class="arrow">→</span></button>
+
+      <div class="section-heading"><div><p class="eyebrow">TOUTES LES MATIÈRES</p><h2>Ton programme</h2></div><button class="text-btn" data-go="subjects">Tout voir</button></div>
+      <div id="homeSubjects" class="subject-grid"></div>
+    </section>
+
+    <section id="subjects" class="page">
+      <div class="page-intro"><p class="eyebrow">TON PROGRAMME</p><h1>Toutes les matières</h1><p>Choisis une matière pour commencer.</p></div>
+      <div id="allSubjects" class="subject-list"></div>
+    </section>
+
+    <section id="subjectDetail" class="page">
+      <button class="back-btn" data-go="subjects">← Toutes les matières</button>
+      <div id="subjectHeader" class="subject-header"></div>
+      <div class="mode-grid">
+        <button class="mode-card" data-mode="notes"><span class="mode-icon notes-icon">▤</span><b>Fiches</b><small>Les essentiels à retenir</small><span class="mode-arrow">→</span></button>
+        <button class="mode-card" data-mode="quiz"><span class="mode-icon quiz-icon">✓</span><b>QCM</b><small>Teste tes connaissances</small><span class="mode-arrow">→</span></button>
+        <button class="mode-card" data-mode="cards"><span class="mode-icon cards-icon">▣</span><b>Flashcards</b><small>Mémorise activement</small><span class="mode-arrow">→</span></button>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">TES RÉSULTATS</p><h2>Dans cette matière</h2></div></div>
+      <div id="subjectStats" class="subject-progress-card"></div>
+    </section>
+
+    <section id="study" class="page">
+      <button class="back-btn" id="studyBack">← Retour à la matière</button>
+      <div id="studyHeading" class="page-intro"></div>
+      <div id="studyContent"></div>
+    </section>
+
+    <section id="progress" class="page">
+      <div class="page-intro"><p class="eyebrow">TU AVANCES !</p><h1>Ma progression</h1><p>Chaque session compte. Continue comme ça.</p></div>
+      <div class="overall-card"><div><span class="muted">Progression globale</span><h2 id="progressBig">0%</h2><p id="progressCaption">Commence une première activité pour suivre tes progrès.</p></div><div class="ring" id="progressRing"><span id="ringValue">0%</span></div></div>
+      <div class="section-heading"><div><p class="eyebrow">PAR MATIÈRE</p><h2>Où en es-tu ?</h2></div></div>
+      <div id="progressSubjects" class="progress-subjects"></div>
+      <div class="backup-actions"><button id="exportBtn" class="secondary-btn">Exporter ma sauvegarde</button><button id="importBtn" class="secondary-btn">Importer une sauvegarde</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+      <button id="resetBtn" class="danger-btn">Réinitialiser ma progression</button>
+      <p class="tiny muted">Tes résultats restent dans le stockage local de ce navigateur. Ils ne sont pas envoyés à un serveur. Exporte régulièrement une sauvegarde pour éviter de perdre tes progrès si tu effaces les données du navigateur ou changes de téléphone.</p>
+    </section>
+
+    <section id="oral" class="page">
+      <div class="page-intro"><p class="eyebrow">LE JOUR J</p><h1>Préparer l’oral</h1><p>Structure ton exposé et entraîne-toi à parler clairement.</p></div>
+      <article class="content-card"><span class="pill">1 · Préparer</span><h2>Construis ton plan</h2><ol><li><b>Introduction :</b> présente ton sujet et explique pourquoi tu l’as choisi.</li><li><b>Développement :</b> organise tes idées en 2 ou 3 parties avec des exemples précis.</li><li><b>Conclusion :</b> résume ce que tu as appris et ouvre sur une réflexion personnelle.</li></ol></article>
+      <article class="content-card"><span class="pill">2 · S’entraîner</span><h2>Checklist avant l’oral</h2><div class="checklist"><label><input type="checkbox" data-check="oral-plan"> Mon plan est clair et logique</label><label><input type="checkbox" data-check="oral-time"> J’ai chronométré ma présentation</label><label><input type="checkbox" data-check="oral-visual"> Mes supports sont lisibles</label><label><input type="checkbox" data-check="oral-questions"> J’ai préparé des réponses aux questions possibles</label><label><input type="checkbox" data-check="oral-practice"> Je me suis entraîné·e à voix haute</label></div></article>
+      <article class="content-card"><span class="pill">3 · Le jour J</span><h2>Les bons réflexes</h2><ul><li>Parle lentement et regarde le jury.</li><li>Explique avec tes propres mots plutôt que de lire tes notes.</li><li>Si tu ne sais pas répondre, prends quelques secondes pour réfléchir.</li><li>Appuie tes réponses sur des exemples concrets.</li></ul></article>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigation principale">
+    <button class="nav-item active" data-go="home"><span>⌂</span><small>Accueil</small></button>
+    <button class="nav-item" data-go="subjects"><span>▤</span><small>Matières</small></button>
+    <button class="nav-item" data-go="progress"><span>◔</span><small>Progression</small></button>
+    <button class="nav-item" data-go="oral"><span>✦</span><small>Oral</small></button>
+  </nav>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

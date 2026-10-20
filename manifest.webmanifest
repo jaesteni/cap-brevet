@@ -1,0 +1,22 @@
+{
+  "name": "Cap Brevet — Révise malin",
+  "short_name": "Cap Brevet",
+  "description": "Fiches, QCM, flashcards et progression pour réviser le brevet.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8fc",
+  "theme_color": "#3157d5",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education"
+  ]
+}
